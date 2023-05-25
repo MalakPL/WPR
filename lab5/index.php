@@ -1,8 +1,28 @@
 <?php
 require_once 'config.php';
 
-$db->orderBy('cena','asc');
-$cheapestCars = $db->get('samochody', 5);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $marka = $_POST["marka"];
+    $model = $_POST["model"];
+    $cena = $_POST["cena"];
+    $rok = $_POST["rok"];
+    $opis = $_POST["opis"];
+
+    $data = Array (
+        "marka" => $marka,
+        "model" => $model,
+        "cena" => $cena,
+        "rok" => $rok,
+        "opis" => $opis
+    );
+
+    $id = $db->insert ('samochody', $data);
+
+    if ($id)
+        echo 'Samochód został dodany pomyślnie.';
+    else
+        echo 'Wystąpił błąd podczas dodawania samochodu.';
+}
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +120,7 @@ $cheapestCars = $db->get('samochody', 5);
 <div class="tab-content" id="addCar" style="display: none;">
     <div class="mt-5 w-1/2 mx-auto">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Nowy samochód</h2>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" class="bg-white p-5">
+        <form method="post" action="/" class="bg-white p-5">
             <label for="marka">Marka:</label><br>
             <input type="text" id="marka" name="marka" class="border border-gray-300 p-2 w-full"><br>
             <label for="model">Model:</label><br>
