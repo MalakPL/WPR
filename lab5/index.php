@@ -43,18 +43,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             });
         });
     </script>
+    <style>
+        @media (max-width: 640px) {
+            /* Style dla urządzeń o szerokości do 640px */
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+            .tab-link {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-gray-200">
 <div class="w-full flex justify-center bg-blue-500 p-3">
-    <nav class="w-1/2 flex justify-between text-white font-bold">
+    <nav class="w-1/2 flex justify-between text-white font-bold nav-links">
         <a href="#home" class="tab-link py-2">Strona główna</a>
         <a href="#allCars" class="tab-link py-2">Wszystkie samochody</a>
         <a href="#addCar" class="tab-link py-2">Dodaj samochód</a>
     </nav>
 </div>
-<div class="tab-content" id="home">
-    <div class="mt-5 w-1/2 mx-auto">
+<div class="tab-content mx-4" id="home">
+    <div class="mt-5 w-1/2 mx-auto overflow-x-auto">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Strona główna</h2>
         <table class="table bg-white table-auto w-full text-center">
             <thead class="bg-blue-500 text-white font-bold">
@@ -87,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
 <div class="tab-content" id="allCars" style="display: none;">
-    <div class="mt-5 w-1/2 mx-auto">
+    <div class="mt-5 w-1/2 mx-auto overflow-x-auto">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Wszystkie samochody</h2>
         <table class="table bg-white table-auto w-full text-center">
             <thead class="bg-blue-500 text-white font-bold">
